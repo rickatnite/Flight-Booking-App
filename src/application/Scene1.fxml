@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.86" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@sky.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="passwordTF" layoutX="150.0" layoutY="335.0" prefHeight="25.0" prefWidth="120.0" promptText="Password" />
+      <TextField fx:id="usernameTF" layoutX="14.0" layoutY="335.0" prefHeight="25.0" prefWidth="120.0" promptText="Username" />
+      <Button fx:id="recoverPasswordButton" layoutX="448.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene3" text="Forgot Password?" />
+      <Button fx:id="registerButton" layoutX="354.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="25.0" prefWidth="84.0" text="Register" />
+      <Button fx:id="loginButton" layoutX="282.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene4" prefHeight="25.0" prefWidth="59.0" text="Login" />
+      <Label layoutX="103.0" layoutY="140.0" text="Welcome!">
+         <font>
+            <Font name="Bungee Inline" size="72.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <Label fx:id="wrongLogIn" layoutX="38.0" layoutY="289.0" prefHeight="17.0" prefWidth="203.0" textFill="#f30d0d" />
+   </children>
+</AnchorPane>
