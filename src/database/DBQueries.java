@@ -170,18 +170,31 @@ public class DBQueries {
 
 				while (rsAllFlights.next()) {
 					
-					Flight flight = new Flight();
-
-					flight.setFlightid(rsAllFlights.getInt("flightid"));
-					flight.setDepartAirport(rsAllFlights.getString("departureairport"));
-					flight.setDepartDate(rsAllFlights.getString("departuredate"));
-					flight.setDepartTime(rsAllFlights.getString("departuretime"));
-					flight.setArrivalAirport(rsAllFlights.getString("arrivalairport"));
-					flight.setArrivalDate(rsAllFlights.getString("arrivaldate"));
-					flight.setArrivalTime(rsAllFlights.getString("arrivaltime"));
-
-					//flights.addAll(flight);
-					flights.add(flight);
+					flights.add(new Flight(rsAllFlights.getString("flightid"), rsAllFlights.getString("departureairport"), 
+							rsAllFlights.getString("departuredate"), rsAllFlights.getString("departuretime"), rsAllFlights.getString("arrivalairport"), 
+							rsAllFlights.getString("arrivaldate"), rsAllFlights.getString("arrivaltime")));
+					
+					
+					//return flights;
+					
+					
+					
+					
+					
+					
+					
+//					Flight flight = new Flight();
+//
+//					flight.setFlightid(rsAllFlights.getString("flightid"));
+//					flight.setDepartAirport(rsAllFlights.getString("departureairport"));
+//					flight.setDepartDate(rsAllFlights.getString("departuredate"));
+//					flight.setDepartTime(rsAllFlights.getString("departuretime"));
+//					flight.setArrivalAirport(rsAllFlights.getString("arrivalairport"));
+//					flight.setArrivalDate(rsAllFlights.getString("arrivaldate"));
+//					flight.setArrivalTime(rsAllFlights.getString("arrivaltime"));
+//
+//					flights.addAll(flight);
+//					//flights.add(flight);
 					
 				}
 				connection.close();
@@ -358,7 +371,7 @@ public static Flight obtainFlight(int flightid) {
 
 		while (rs.next()) {
 
-			flight.setFlightid(rs.getInt("flightid"));
+			flight.setFlightid(rs.getString("flightid"));
 			flight.setDepartAirport(rs.getString("depairport"));
 			flight.setDepartDate(rs.getString("depdate"));
 			flight.setDepartTime(rs.getString("deptime"));
