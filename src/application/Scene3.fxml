@@ -20,12 +20,12 @@
             <Font name="System Bold Italic" size="48.0" />
          </font>
       </Label>
-      <TextField layoutX="200.0" layoutY="135.0" promptText="Username" />
-      <TextField layoutX="200.0" layoutY="213.0" promptText="Security Answer" />
-      <Button layoutX="350.0" layoutY="135.0" mnemonicParsing="false" text="Submit" />
-      <Button layoutX="350.0" layoutY="213.0" mnemonicParsing="false" text="Submit" />
+      <TextField fx:id="usernameTF" layoutX="200.0" layoutY="135.0" prefHeight="25.0" prefWidth="149.0" promptText="Username" />
+      <TextField fx:id="secPassTF" layoutX="200.0" layoutY="213.0" prefHeight="25.0" prefWidth="149.0" promptText="Security Answer" />
+      <Button fx:id="submitToGetQuestion" layoutX="350.0" layoutY="135.0" mnemonicParsing="false" onAction="#SecurityQuestionGet" text="Submit" />
+      <Button fx:id="submitToGetPass" layoutX="350.0" layoutY="213.0" mnemonicParsing="false" onAction="#SecurityQuestionGet" text="Submit" />
       <Button fx:id="returnToLoginButton" layoutX="228.0" layoutY="319.0" mnemonicParsing="false" onAction="#switchToScene1" text="Return to Login" />
-      <Label layoutX="203.0" layoutY="251.0" prefHeight="25.0" prefWidth="149.0" />
-      <Label layoutX="201.0" layoutY="175.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label fx:id="wrongInput2" layoutX="203.0" layoutY="251.0" prefHeight="25.0" prefWidth="149.0" />
+      <Label fx:id="wrongInput" layoutX="201.0" layoutY="175.0" prefHeight="25.0" prefWidth="149.0" />
    </children>
 </AnchorPane>

@@ -13,9 +13,9 @@ public class User implements Comparable<User> {
 	private String lastname;
 	private String address;
 	private String state;
-	private int zipcode;
+	private String zipcode;
 	private String email;
-	private int ssn;
+	private String ssn;
 	private String securityquestion;
 	private String securityanswer;
 	//public static boolean is_Admin = false;
@@ -31,7 +31,7 @@ public class User implements Comparable<User> {
 	
 	// create user object
 	
-	public User(int userid, String username, String password, String firstname, String lastname, String address, String state, String email, int zipcode, int ssn, String securityquestion, String securityanswer) {
+	public User(int userid, String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
 		
 		this.userid = userid;
 		this.firstname = firstname;
@@ -49,7 +49,7 @@ public class User implements Comparable<User> {
 	
 	
 	//call Registration page to createUser
-	public static void createUser(String username, String password, String firstname, String lastname, String address, String state, String email, int zipcode, int ssn, String securityquestion, String securityanswer) {
+	public static void createUser(String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
 		
 		int id = generateUserid();
 		User user = new User(id, username, password, firstname, lastname, address, state, email, zipcode, ssn, securityquestion, securityanswer);
@@ -116,12 +116,12 @@ public class User implements Comparable<User> {
 		this.state = state;
 	}
 
-	public int getZipcode() {
+	public String getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(int zipcode) {
-		this.zipcode = zipcode;
+	public void setZipcode(String zipcode2) {
+		this.zipcode = zipcode2;
 	}
 
 	public String getEmail() {
@@ -132,11 +132,11 @@ public class User implements Comparable<User> {
 		this.email = email;
 	}
 
-	public int getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
 
-	public void setSsn(int ssn) {
+	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
 
