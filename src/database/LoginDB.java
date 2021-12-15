@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import businessLogic.User;
+
 public class LoginDB {
 
 	static final String dbURL = "jdbc:postgresql://localhost:5432/";
@@ -73,7 +75,7 @@ public class LoginDB {
 	
 	
 	
-	public String obtainPassword(String username, String securityanswer) {
+	public static String obtainPassword(User username, String securityanswer) {
 		
 		String result = "";
 		String actualAnswer = "";
@@ -83,7 +85,7 @@ public class LoginDB {
 		try {
 			connection = DriverManager.getConnection(dbURL, dbUser, dbPass);
 			
-			PreparedStatement psop = connection.prepareStatement("query");
+			PreparedStatement psop = connection.prepareStatement(Queries.GET_PASSWORD);
 			
 			ResultSet rsop = psop.executeQuery();
 			

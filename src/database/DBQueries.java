@@ -12,6 +12,8 @@ import java.util.List;
 
 import businessLogic.Flight;
 import businessLogic.User;
+import businessLogic.Booking;
+
 //import edu.gsu.common.Action;
 //import edu.gsu.common.Customer;
 //import edu.gsu.common.Flight;
@@ -69,8 +71,6 @@ public class DBQueries {
 			connection.close();
 		}
 	}    
-	
-
 	
 	
 	public static void main(String[] args) throws Exception {
@@ -156,7 +156,7 @@ public class DBQueries {
 	
 	
 	//Returns an ObservableList of all Flights from the database
-		public static ObservableList<Flight> getFlights(User u) {
+		public static ObservableList<Flight> flightList() {
 			
 			 ObservableList<Flight> flights = FXCollections.observableArrayList();
 
@@ -180,71 +180,64 @@ public class DBQueries {
 					flight.setArrivalDate(rsAllFlights.getString("arrivaldate"));
 					flight.setArrivalTime(rsAllFlights.getString("arrivaltime"));
 
-					
+					//flights.addAll(flight);
 					flights.add(flight);
 					
-					
-					//this is only printing the column in getString - how to get all columns as list
-					String id = rsAllFlights.getString(1);
-					String depcode = rsAllFlights.getString(2);
-					String depdate = rsAllFlights.getString(3);
-					String deptime = rsAllFlights.getString(4);
-					String arrcode = rsAllFlights.getString(5);
-					String arrdate = rsAllFlights.getString(6);
-					String arrtime = rsAllFlights.getString(7);
-				
-					//List<String> allFlightsList = new ArrayList<String>();
-					//String displayFlights = String.join("", allFlightsList);
-					//System.out.println(displayFlights);
-					
-					ArrayList<String> theList = new ArrayList<String>();
-					theList.add(id);
-					theList.add(depcode);
-					theList.add(depdate);
-					theList.add(deptime);
-					theList.add(arrcode);
-					theList.add(arrdate);
-					theList.add(arrtime);
-					
-					//System.out.println(Arrays.toString(flights.toArray()));
-					
-					//System.out.println(id + " " + depcode + " " + depdate + " " + deptime + " " + arrcode + " " + arrdate + " " + arrtime);
-					
-					//how to get these Strings into list so i can display it ????
-					
-					//String x = " ";
-					
-					for(int i = 0; i < theList.size(); i++){
-					    System.out.println(theList.get(i));
-					    //x += theList.get(i);
-					      
-					}
-					
-					//return x;
-					
-					
-					
 				}
-
 				connection.close();
-
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
 			return flights;
-			
 		}
+					
+//					//this is only printing the column in getString - how to get all columns as list
+//					String id = rsAllFlights.getString(1);
+//					String depcode = rsAllFlights.getString(2);
+//					String depdate = rsAllFlights.getString(3);
+//					String deptime = rsAllFlights.getString(4);
+//					String arrcode = rsAllFlights.getString(5);
+//					String arrdate = rsAllFlights.getString(6);
+//					String arrtime = rsAllFlights.getString(7);
+//				
+//					//List<String> allFlightsList = new ArrayList<String>();
+//					//String displayFlights = String.join("", allFlightsList);
+//					//System.out.println(displayFlights);
+//					
+//					ArrayList<String> theList = new ArrayList<String>();
+//					theList.add(id);
+//					theList.add(depcode);
+//					theList.add(depdate);
+//					theList.add(deptime);
+//					theList.add(arrcode);
+//					theList.add(arrdate);
+//					theList.add(arrtime);
+//					
+//					//System.out.println(Arrays.toString(flights.toArray()));
+//					
+//					//System.out.println(id + " " + depcode + " " + depdate + " " + deptime + " " + arrcode + " " + arrdate + " " + arrtime);
+//					
+//					//how to get these Strings into list so i can display it ????
+//					
+//					//String x = " ";
+//					
+//					for(int i = 0; i < theList.size(); i++){
+//					    System.out.println(theList.get(i));
+//					    //x += theList.get(i);
+//					      
+//					}
+//					
+//					//return x;
+					
+					
+					
 
-
-	
-	
 
 
 //WORKS
 //GET_USERID = "SELECT userid FROM public.user WHERE username = ? AND password = ?";
 	
-	public static void getUserID(User u) throws SQLException, ClassNotFoundException {
+public static void getUserID(User u) throws SQLException, ClassNotFoundException {
 
 		  String username = u.getUsername();
 		  String password = u.getPassword();
@@ -276,12 +269,7 @@ public class DBQueries {
 	    connection.close();
 	  }
 	  
-	  
-
-	  	  
-	  
-	  
-	  
+	 
 	  
 public static void getSecurityQuestion(User u) throws SQLException, ClassNotFoundException {
 
@@ -317,9 +305,7 @@ public static void getSecurityQuestion(User u) throws SQLException, ClassNotFoun
 	  
   connection.close();
 }
-
-	  
-	  
+ 
 	  
 
 public static void retrievePass(User u) throws SQLException, ClassNotFoundException {
@@ -327,41 +313,150 @@ public static void retrievePass(User u) throws SQLException, ClassNotFoundExcept
 	  String username = u.getUsername();
 	  String securityanswer = u.getSecurityanswer();
 	  
-// Connect to a database
-Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
-System.out.println("Database connected");
+	// Connect to a database
+	Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+	System.out.println("Database connected");
+	
+	// Create a statement
+	PreparedStatement psPass = connection.prepareStatement(Queries.GET_PASSWORD);
+	
+	psPass.setString(1, username);
+	psPass.setString(2, securityanswer);
+	
+	// Execute a statement
+	ResultSet rsPass = psPass.executeQuery();
+	
+	
+	System.out.println("here now");
+	
+	if (rsPass.next()) {
+		do {
+			
+			String correctPass = rsPass.getString(1);
+			
+			u.setPassword(correctPass);
+			System.out.println("Your password is: " + correctPass);
+			
+		} while (rsPass.next());
+	}	  
+		  
+	connection.close();
+	}
 
-// Create a statement
-PreparedStatement psPass = connection.prepareStatement(Queries.GET_PASSWORD);
-
-psPass.setString(1, username);
-psPass.setString(2, securityanswer);
-
-// Execute a statement
-ResultSet rsPass = psPass.executeQuery();
 
 
-System.out.println("here now");
+public static Flight obtainFlight(int flightid) {
 
-if (rsPass.next()) {
-	do {
-		
-		String correctPass = rsPass.getString(1);
-		
-		u.setPassword(correctPass);
-		System.out.println("Your password is: " + correctPass);
-		
-	} while (rsPass.next());
-}	  
-	  
-connection.close();
+	Flight flight = new Flight();
+	try {
+
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+
+		PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_FLIGHT);
+
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+
+			flight.setFlightid(rs.getInt("flightid"));
+			flight.setDepartAirport(rs.getString("depairport"));
+			flight.setDepartDate(rs.getString("depdate"));
+			flight.setDepartTime(rs.getString("deptime"));
+			flight.setArrivalAirport(rs.getString("arrairport"));
+			flight.setArrivalDate(rs.getString("arrdate"));
+			flight.setArrivalTime(rs.getString("arrtime"));
+		}
+
+		connection.close();
+
+	} catch (Exception e) {
+		e.printStackTrace();
+
+	}
+	return flight;
+	
 }
-}  
 
 
 
-public static void findPass(User u, )
 
+
+
+
+
+
+public static ObservableList<Booking> retrieveBookings(int userid) {
+
+	 ObservableList<Booking> bookings = FXCollections.observableArrayList();
+
+	
+	try {
+
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+        System.out.println("Connected to PostgreSQL database!");
+        
+		PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_BOOKED_TICKETS);
+
+		ResultSet rs = preparedStatement.executeQuery();
+
+		while (rs.next()) {
+			
+			Booking booked = new Booking(rs.getInt("ticketid"), (rs.getInt("flightid")), (rs.getInt("userid")));
+				
+			bookings.add(booked);
+
+		}
+		connection.close();
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return bookings;
+}
+
+
+
+
+
+
+//Method to insert new booking in the database
+public static void insertBooking(Booking booking){
+	
+	try {
+		
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+            System.out.println("Connected to PostgreSQL database!");
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(Queries.BOOK_TICKET);
+
+		preparedStatement.setInt(1, booking.getTicketid());
+		preparedStatement.setInt(2, booking.getFlightid());
+		preparedStatement.setInt(3, booking.getUserid());
+
+		preparedStatement.executeUpdate();
+
+		connection.close();
+		
+		System.out.println("Ticket number is: " + booking.getTicketid());
+		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
 

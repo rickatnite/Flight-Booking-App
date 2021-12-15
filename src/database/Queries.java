@@ -7,11 +7,11 @@ public class Queries {
 
 	public static final String INSERT_NEW_USER = "INSERT INTO public.user(username, password, firstname, lastname, address, zipcode, state, email, ssn, securityquestion, securityanswer) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
-	//public static final String GET_FLIGHTS = "SELECT * FROM public.flight GROUP BY flight";
+	public static final String GET_FLIGHT = "SELECT * FROM public.flight WHERE flightID = ?";
 	//public static final String GET_FLIGHTS = "SELECT * FROM public.flight GROUP BY flight";
 	public static final String GET_FLIGHTS = "SELECT * FROM public.flight";
 	
-	public static final String BOOK_TICKET = "INSERT INTO public.ticket(flightid, userid) VALUES (?,?)";
+	public static final String BOOK_TICKET = "INSERT INTO public.ticket(ticketid, userid, flightid) VALUES (?,?,?)";
 	
 	public static final String DELETE_TICKET = "DELETE * FROM public.ticket WHERE userID = ? AND ticketID = ?";
 	

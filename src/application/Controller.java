@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import businessLogic.User;
 import database.DBQueries;
+import database.LoginDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -152,24 +153,47 @@ public class Controller {
 		
 	}
 	
-//	public void AnswerGet(ActionEvent event, User user) throws IOException {
-//
-////		//Retrieve Password using Security Answer
+	public void AnswerGet(ActionEvent event, User user) throws IOException {
+
+//		//Retrieve Password using Security Answer
+		
+		wrongInput.setText(user.getSecurityquestion());
+		String securityAnswer = secPassTF.getText().toString();
+		user.setSecurityanswer(securityAnswer);
+		
+		
+		try {
+			DBQueries.retrievePass(user);
+			//LoginDB.obtainPassword(user, securityAnswer);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		wrongInput2.setText(user.getPassword());
+		
+	}
+	
+	
+	
+//	String uname = usernameInput.getText();
+//	String secA = SecurityAnswerInput.getText();
+//	
+//	
+//	try {
 //		
-//		wrongInput.setText(user.getSecurityquestion());
-//		String securityAnswer = secPassTF.getText().toString();
-//		user.setSecurityanswer(securityAnswer);
+//		LoginDB check = new LoginDB();
 //		
+//		String display = check.obtainPassword(uname, secA);
 //		
-//		try {
-//			DBQueries.retrievePass(user);
+//		System.out.println(display);
 //			
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		wrongInput2.setText(user.getPassword());
-//		
+//	} catch(Exception ex) {
+//		ex.printStackTrace();
 //	}
+	
+	
+	
+	
 	
 	public void switchToScene1Register(ActionEvent event) throws IOException {
 		User user = new User();
@@ -225,7 +249,7 @@ public class Controller {
 		
 
 			
-			
+		//retunr obvseravbleList of flights	
 			
 			
 			

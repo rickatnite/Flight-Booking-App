@@ -29,20 +29,20 @@ public class Flight implements Comparable<Flight> {
 	}
 	
 	
-	//call the gui - create flight object - insert in db
-	public static void createFlight(String depAirport, String depDate, String depTime, String arrAirport, String arrDate, String arrTime) {
-	
-		int id = genFlightid();
-		Flight flight = new Flight(id, depAirport, depDate, depTime, arrAirport, arrDate, arrTime);
-		Insert.insertFlight(flight);
-		
-		if (Insert.successful) {
-			System.out.println("New Flight Created - Flight ID: " + id);
-		} else {
-			System.out.println("Failed");
-		}
-		
-	}
+//	//call the gui - create flight object - insert in db
+//	public static void createFlight(String depAirport, String depDate, String depTime, String arrAirport, String arrDate, String arrTime) {
+//	
+//		int id = genFlightid();
+//		Flight flight = new Flight(id, depAirport, depDate, depTime, arrAirport, arrDate, arrTime);
+//		Insert.insertFlight(flight);
+//		
+//		if (Insert.successful) {
+//			System.out.println("New Flight Created - Flight ID: " + id);
+//		} else {
+//			System.out.println("Failed");
+//		}
+//		
+//	}
 	
 	//generate flightid num
 	public static int genFlightid() {
