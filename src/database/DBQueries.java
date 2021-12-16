@@ -163,9 +163,7 @@ public class DBQueries {
 			try {
 
 				Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
-
 				PreparedStatement psGetFlights = connection.prepareStatement(Queries.GET_FLIGHTS);
-
 				ResultSet rsAllFlights = psGetFlights.executeQuery();
 
 				while (rsAllFlights.next()) {
@@ -173,7 +171,6 @@ public class DBQueries {
 					flights.add(new Flight(rsAllFlights.getString("flightid"), rsAllFlights.getString("departureairport"), 
 							rsAllFlights.getString("departuredate"), rsAllFlights.getString("departuretime"), rsAllFlights.getString("arrivalairport"), 
 							rsAllFlights.getString("arrivaldate"), rsAllFlights.getString("arrivaltime")));
-					
 				}
 				connection.close();
 			} catch (Exception e) {
@@ -267,8 +264,10 @@ public static void getUserID(User u) throws SQLException, ClassNotFoundException
 	    if (rsUserID.next()) {
 	    	do {
 	    	
-	    		int userid = rsUserID.getInt(1);
+	    		String userid = rsUserID.getString(1);
+	    		u.setUserid(userid);
 	    		System.out.println("User ID: " + userid);
+	    		
 	    		
 	    	} while (rsUserID.next());
 	    }
@@ -351,7 +350,7 @@ public static void retrievePass(User u) throws SQLException, ClassNotFoundExcept
 
 
 
-public static Flight obtainFlight(int flightid) {
+public static Flight obtainFlight(String flightid) {
 
 	Flight flight = new Flight();
 	try {
@@ -385,13 +384,8 @@ public static Flight obtainFlight(int flightid) {
 
 
 
-
-
-
-
-
-
-public static ObservableList<Booking> retrieveBookings(int userid) {
+//NEED TO FIX WITH ARG - User u
+public static ObservableList<Booking> retrieveBookings(String userid) {
 
 	 ObservableList<Booking> bookings = FXCollections.observableArrayList();
 
@@ -407,7 +401,7 @@ public static ObservableList<Booking> retrieveBookings(int userid) {
 
 		while (rs.next()) {
 			
-			Booking booked = new Booking(rs.getInt("ticketid"), (rs.getInt("flightid")), (rs.getInt("userid")));
+			Booking booked = new Booking(rs.getString("ticketid"), (rs.getString("flightid")), (rs.getString("userid")));
 				
 			bookings.add(booked);
 
@@ -422,28 +416,39 @@ public static ObservableList<Booking> retrieveBookings(int userid) {
 
 
 
-
-
-
 //Method to insert new booking in the database
-public static void insertBooking(Booking booking){
+public static void insertBooking(VO vo) {
+	
+	User u = vo.getUser();
+	String userid = u.getUserid();
+	
+	Flight f = vo.getFl();
+	String flightid = f.getFlightid();
+	
+//	String usr = u.getUserid();
+//	String flt = f.getFlightid();
 	
 	try {
 		
 		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
-            System.out.println("Connected to PostgreSQL database!");
+        System.out.println("Connected to PostgreSQL database!");
 		
 		PreparedStatement preparedStatement = connection.prepareStatement(Queries.BOOK_TICKET);
 
-		preparedStatement.setInt(1, booking.getTicketid());
-		preparedStatement.setInt(2, booking.getFlightid());
-		preparedStatement.setInt(3, booking.getUserid());
+		//preparedStatement.setString(1, booking.getTicketid());
+		preparedStatement.setString(1, userid);
+		preparedStatement.setString(2, flightid);
+	
 
 		preparedStatement.executeUpdate();
-
+		
 		connection.close();
 		
-		System.out.println("Ticket number is: " + booking.getTicketid());
+		
+		
+		
+		
+		//System.out.println("Ticket number is: " + booking.getTicketid());
 		
 		} catch(Exception e) {
 			e.printStackTrace();

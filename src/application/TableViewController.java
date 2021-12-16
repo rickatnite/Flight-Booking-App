@@ -2,11 +2,16 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 import businessLogic.Flight;
 import businessLogic.User;
 import database.DBQueries;
+import database.VO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -150,27 +155,91 @@ public class TableViewController implements Initializable {
 		col_scheduled_arrival_time.setCellValueFactory(
 				new PropertyValueFactory<Flight,String>("arrivalTime"));
 		
-		
+	
+		//table_scheduled_flights.setItems(list);
 		//table_scheduled_flights.setItems(DBQueries.retrieveBookings());
 		
-		
-		
+	
 		
 	}
 	
 	
 	
+	// when show my flight button is clicked the users currently booked flights are shown
+	public void displayBookedFlights(ActionEvent event) throws Exception {
+		
+		User user = new User();
+		String id = user.getUserid();
 
+		String query = "SELECT * FROM ticket WHERE userid = " + "'" + id + "'";
+		
+		try {
+			
+			Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+	        System.out.println("Connected to PostgreSQL database!");
+			PreparedStatement psbf = connection.prepareStatement(query);
+			ResultSet rsbf = psbf.executeQuery();
+				
+			while(rsbf.next()) {
+				list.add(new Flight(rsbf.getString("flightid"), rsbf.getString("departureairport"), rsbf.getString("departuredate"), rsbf.getString("departuretime"), 
+						rsbf.getString("arrivalairport"), rsbf.getString("arrivaldate"), rsbf.getString("arrivaltime")));		
+			}
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+	
 	
 	
 	
 	
 	//Method to add from Available Flights TableView
 	public void addRowFromTable(ActionEvent event) throws IOException {
-		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
 		
-		System.out.println(selectedFlight);
+		
+		User u = DBQueries.getUserID(u);
+		
+		
+		
+		
+		
+		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
+		VO vo = new VO();
+		vo.setFl(selectedFlight.getFlightid());
+		
+		
+		System.out.println(selectedFlight.getFlightid());
+		
+		
+		
+		
+		
+		
+		//String flt = selectedFlight.getFlightid();
+		//String usr = u.getUserid();
+		
+		//VO vo = new VO();
+		
+//		VO.setFl(selectedFlight.getFlightid());
+//		vo.setUser(u);
+//		
+//		vo.getUser();
+//		vo.getFlight();
+//		
+//		System.out.println(vo.toString());
+		
+		
+		
+		DBQueries.insertBooking();
 	}
+	
+	
+	public User createUser(User user) {
+		User yooser = user;
+		return yooser;
+	}
+	
 	
 	//Method to remove from Scheduled Flights TableView
     public void deleteRowFromTable(ActionEvent event) throws IOException {

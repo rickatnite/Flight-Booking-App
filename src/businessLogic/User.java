@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import database.Insert;
 
-public class User implements Comparable<User> {
-
-	private int userid;
+public class User {
+//implements Comparable<User>????
+	private String userid;
 	private String username;
 	private String password;
 	private String firstname;
@@ -31,7 +31,7 @@ public class User implements Comparable<User> {
 	
 	// create user object
 	
-	public User(int userid, String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
+	public User(String userid, String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
 		
 		this.userid = userid;
 		this.firstname = firstname;
@@ -48,25 +48,25 @@ public class User implements Comparable<User> {
 	}
 	
 	
-	//call Registration page to createUser
-	public static void createUser(String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
-		
-		int id = generateUserid();
-		User user = new User(id, username, password, firstname, lastname, address, state, email, zipcode, ssn, securityquestion, securityanswer);
-		Insert input = new Insert();
-		input.insertUser(user);
-	}
+//	//call Registration page to createUser
+//	public static void createUser(String username, String password, String firstname, String lastname, String address, String state, String email, String zipcode, String ssn, String securityquestion, String securityanswer) {
+//		
+//		String id = generateUserid();
+//		User user = new User(id, username, password, firstname, lastname, address, state, email, zipcode, ssn, securityquestion, securityanswer);
+//		Insert input = new Insert();
+//		input.insertUser(user);
+//	}
 	
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 	
-	//generate user id from random num
-	public static int generateUserid() {
-		Random random = new Random();
-		int idNum = random.nextInt(9999);
-		return idNum;
-	}
+//	//generate user id from random num
+//	public static int generateUserid() {
+//		Random random = new Random();
+//		int idNum = random.nextInt(9999);
+//		return idNum;
+//	}
 
 	public String getUsername() {
 		return username;
@@ -156,7 +156,7 @@ public class User implements Comparable<User> {
 		this.securityanswer = securityanswer;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
@@ -175,13 +175,13 @@ public class User implements Comparable<User> {
 	
 	
 	
-	public int compareTo(User u) {
-		
-		if (password == u.getPassword()) {
-			return 0;
-		} else
-			return -1;
-	}
+//	public int compareTo(User u) {
+//		
+//		if (password == u.getPassword()) {
+//			return 0;
+//		} else
+//			return -1;
+//	}
 }
 
 

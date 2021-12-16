@@ -29,29 +29,10 @@ public class Flight {
 	}
 	
 	
-//	//call the gui - create flight object - insert in db
-//	public static void createFlight(String depAirport, String depDate, String depTime, String arrAirport, String arrDate, String arrTime) {
-//	
-//		int id = genFlightid();
-//		Flight flight = new Flight(depAirport, depDate, depTime, arrAirport, arrDate, arrTime);
-//		Insert.insertFlight(flight);
-//		
-//		if (Insert.successful) {
-//			System.out.println("New Flight Created - Flight ID: " + id);
-//		} else {
-//			System.out.println("Failed");
-//		}
-//		
-//	}
 	
-//	//generate flightid num
-//	public static int genFlightid() {
-//		
-//		Random random = new Random();
-//		int flightID = random.nextInt(999);
-//		return flightID;
-//	}
 
+
+	
 	
 	//getter/setters
 	public String getFlightid() {
@@ -143,7 +124,28 @@ public class Flight {
 
 
 
+////call the gui - create flight object - insert in db
+//public static void createFlight(String depAirport, String depDate, String depTime, String arrAirport, String arrDate, String arrTime) {
+//
+//	int id = genFlightid();
+//	Flight flight = new Flight(depAirport, depDate, depTime, arrAirport, arrDate, arrTime);
+//	Insert.insertFlight(flight);
+//	
+//	if (Insert.successful) {
+//		System.out.println("New Flight Created - Flight ID: " + id);
+//	} else {
+//		System.out.println("Failed");
+//	}
+//	
+//}
 
+////generate flightid num
+//public static int genFlightid() {
+//	
+//	Random random = new Random();
+//	int flightID = random.nextInt(999);
+//	return flightID;
+//}
 
 
 

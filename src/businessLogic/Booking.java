@@ -9,9 +9,9 @@ import database.DBQueries;
 
 public class Booking {
 
-	private int ticketid;
-	private int userid;
-	private int flightid;
+	private String ticketid;
+	private String userid;
+	private String flightid;
 	private String depairport;
 	private String depdate;
 	private String deptime;
@@ -23,7 +23,7 @@ public class Booking {
 	}
 	
 	
-	public Booking(int ticketid,int userid, int flightid, String depairport, String depdate, String deptime, String arrairport, String arrdate, String arrtime) {
+	public Booking(String ticketid, String userid, String flightid, String depairport, String depdate, String deptime, String arrairport, String arrdate, String arrtime) {
 		this.ticketid = ticketid;
 		this.userid = userid;
 		this.flightid = flightid;
@@ -36,13 +36,21 @@ public class Booking {
 	}
 	
 	
-	public Booking(int ticketid, int userid, int flightid) {
+	public Booking(String flightid) {
+		this.flightid = flightid;
+	}
+	
+	
+	
+	
+	
+	public Booking(String ticketid, String userid, String flightid) {
 		this.ticketid = ticketid;
 		this.userid = userid;
 		this.flightid = flightid;
 	}
 	
-	public static void bookFlight(int flightid) {
+	public void bookFlight(String flightid) {
 		//int ticketnum = genTicketID();
 		Flight booker = DBQueries.obtainFlight(flightid);
 		Booking booking = new Booking(ticketid, userid, flightid);
@@ -56,32 +64,32 @@ public class Booking {
 //	}
 
 
-	public int getTicketid() {
+	public String getTicketid() {
 		return ticketid;
 	}
 
 
-	public void setTicketid(int ticketid) {
+	public void setTicketid(String ticketid) {
 		this.ticketid = ticketid;
 	}
 
 
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
 
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
 
-	public int getFlightid() {
+	public String getFlightid() {
 		return flightid;
 	}
 
 
-	public void setFlightid(int flightid) {
+	public void setFlightid(String flightid) {
 		this.flightid = flightid;
 	}
 

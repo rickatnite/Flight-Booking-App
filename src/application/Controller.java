@@ -5,6 +5,7 @@ import java.io.IOException;
 import businessLogic.User;
 import database.DBQueries;
 import database.LoginDB;
+import database.VO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -106,6 +107,10 @@ public class Controller {
 		
 		user.setUsername(username);
 		user.setPassword(password);
+		VO vo = new VO();
+		vo.setUser(user);
+	
+		
 		
 		try {
 			DBQueries.login(user);
