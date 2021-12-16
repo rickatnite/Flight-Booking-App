@@ -151,27 +151,42 @@ public class Controller {
 		wrongInput.setText(user.getSecurityquestion());
 		
 		
+//		if(secPassTF.getText().toString().equals("javacoding")) {
+//			wrongInput2.setText("Success!");
+//		}
+//		else {
+//			wrongInput2.setText("Incorrect Password");
+//		}
+		
 	}
-	
-	public void AnswerGet(ActionEvent event, User user) throws IOException {
-
+	//Method to retrieve password
+//	public void getPassword(ActionEvent event) throws IOException {
+//
+//		
+//		if(secPassTF.getText().toString().equals("javacoding")) {
+//			wrongInput2.setText("Success!");
+//		}
+//		else {
+//			wrongInput2.setText("Incorrect Password");
+//		}
+		
 //		//Retrieve Password using Security Answer
 		
-		wrongInput.setText(user.getSecurityquestion());
-		String securityAnswer = secPassTF.getText().toString();
-		user.setSecurityanswer(securityAnswer);
+		//wrongInput.setText(user.getSecurityquestion());
+//		String securityAnswer = secPassTF.getText().toString();
+//		user.setSecurityanswer(securityAnswer);
+//		
+//		
+//		try {
+//			DBQueries.retrievePass(user);
+//			//LoginDB.obtainPassword(user, securityAnswer);
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		//wrongInput2.setText(user.getPassword());
 		
-		
-		try {
-			DBQueries.retrievePass(user);
-			//LoginDB.obtainPassword(user, securityAnswer);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		wrongInput2.setText(user.getPassword());
-		
-	}
+	//}
 	
 	
 	

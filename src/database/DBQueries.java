@@ -174,28 +174,6 @@ public class DBQueries {
 							rsAllFlights.getString("departuredate"), rsAllFlights.getString("departuretime"), rsAllFlights.getString("arrivalairport"), 
 							rsAllFlights.getString("arrivaldate"), rsAllFlights.getString("arrivaltime")));
 					
-					
-					//return flights;
-					
-					
-					
-					
-					
-					
-					
-//					Flight flight = new Flight();
-//
-//					flight.setFlightid(rsAllFlights.getString("flightid"));
-//					flight.setDepartAirport(rsAllFlights.getString("departureairport"));
-//					flight.setDepartDate(rsAllFlights.getString("departuredate"));
-//					flight.setDepartTime(rsAllFlights.getString("departuretime"));
-//					flight.setArrivalAirport(rsAllFlights.getString("arrivalairport"));
-//					flight.setArrivalDate(rsAllFlights.getString("arrivaldate"));
-//					flight.setArrivalTime(rsAllFlights.getString("arrivaltime"));
-//
-//					flights.addAll(flight);
-//					//flights.add(flight);
-					
 				}
 				connection.close();
 			} catch (Exception e) {
@@ -204,6 +182,23 @@ public class DBQueries {
 			return flights;
 		}
 					
+		
+		
+		
+		//return flights;
+//		Flight flight = new Flight();
+//
+//		flight.setFlightid(rsAllFlights.getString("flightid"));
+//		flight.setDepartAirport(rsAllFlights.getString("departureairport"));
+//		flight.setDepartDate(rsAllFlights.getString("departuredate"));
+//		flight.setDepartTime(rsAllFlights.getString("departuretime"));
+//		flight.setArrivalAirport(rsAllFlights.getString("arrivalairport"));
+//		flight.setArrivalDate(rsAllFlights.getString("arrivaldate"));
+//		flight.setArrivalTime(rsAllFlights.getString("arrivaltime"));
+//
+//		flights.addAll(flight);
+//		//flights.add(flight);
+		
 //					//this is only printing the column in getString - how to get all columns as list
 //					String id = rsAllFlights.getString(1);
 //					String depcode = rsAllFlights.getString(2);
@@ -302,8 +297,6 @@ public static void getSecurityQuestion(User u) throws SQLException, ClassNotFoun
   // Execute a statement
   ResultSet rsSecurityQuestion = psSecurityQuestion.executeQuery();
   
-
-  System.out.println("here now");
   
   if (rsSecurityQuestion.next()) {
   	do {

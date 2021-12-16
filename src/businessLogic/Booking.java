@@ -43,17 +43,17 @@ public class Booking {
 	}
 	
 	public static void bookFlight(int flightid) {
-		int ticketnum = genTicketID();
+		//int ticketnum = genTicketID();
 		Flight booker = DBQueries.obtainFlight(flightid);
-		Booking booking = new Booking(ticketnum, userid, );
+		Booking booking = new Booking(ticketid, userid, flightid);
 		DBQueries.insertBooking(booking);
 	}
 	
-	public static int genTicketID() {
-		Random random = new Random();
-		int ticknum = random.nextInt(999);
-		return ticknum;
-	}
+//	public static int genTicketID() {
+//		Random random = new Random();
+//		int ticknum = random.nextInt(999);
+//		return ticknum;
+//	}
 
 
 	public int getTicketid() {

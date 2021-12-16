@@ -72,7 +72,7 @@
             <Image url="@sky.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addFlightButton" layoutX="130.0" layoutY="320.0" mnemonicParsing="false" text="Add Flight" />
+      <Button fx:id="addFlightButton" layoutX="130.0" layoutY="320.0" mnemonicParsing="false" onAction="#addRowFromTable" text="Add Flight" />
       <Button fx:id="returnToLoginButton" layoutX="251.0" layoutY="345.0" mnemonicParsing="false" onAction="#switchToScene1" text="Return to Login" />
       <Button fx:id="deleteFlightButton" layoutX="403.0" layoutY="320.0" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Delete Flight" />
       <TableView fx:id="table_avail_flights" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="266.0">

@@ -109,7 +109,7 @@ public class TableViewController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
-		
+		//set all existing flights to tableview
 		col_avail_ID.setCellValueFactory(
 				new PropertyValueFactory<Flight,String>("flightid"));
 		col_avail_depart.setCellValueFactory(
@@ -125,24 +125,51 @@ public class TableViewController implements Initializable {
 		col_avail_arrival_time.setCellValueFactory(
 				new PropertyValueFactory<Flight,String>("arrivalTime"));
 		
-		
-			
-		
+	
 		table_avail_flights.setItems(DBQueries.flightList());
-		//list = DBQueries.flightList();	
+		
+		
+		
+		
+		
+		
+		
+		//set booked flight to scheduled flights
+		col_scheduled_ID.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("flightid"));
+		col_scheduled_depart.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("departAirport"));
+		col_scheduled_depart_date.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("departDate"));
+		col_scheduled_depart_time.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("departTime"));
+		col_scheduled_arrival.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("arrivalAirport"));
+		col_scheduled_arrival_date.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("arrivalDate"));
+		col_scheduled_arrival_time.setCellValueFactory(
+				new PropertyValueFactory<Flight,String>("arrivalTime"));
+		
+		
+		//table_scheduled_flights.setItems(DBQueries.retrieveBookings());
+		
+		
 		
 		
 	}
 	
 	
 	
+
 	
 	
 	
 	
 	//Method to add from Available Flights TableView
 	public void addRowFromTable(ActionEvent event) throws IOException {
-		table_avail_flights.getItems().addAll(table_avail_flights.getSelectionModel().getSelectedItem());
+		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
+		
+		System.out.println(selectedFlight);
 	}
 	
 	//Method to remove from Scheduled Flights TableView
