@@ -6,28 +6,28 @@ import javafx.collections.ObservableList;
 
 public class VO {
 
-	User user;
-	ObservableList<Flight> flight;
-	Flight fl;
+	static User user;
+	ObservableList<Flight> flights;
+	static Flight fl;
 	
 	
-	public User getUser() {
+	public static User getUser() {
 		return user;
 	}
 
 
 	public void setUser(User user) {
-		this.user = user;
+		VO.user = user;
 	}
 
 
 	public ObservableList<Flight> getFlight() {
-		return flight;
+		return flights;
 	}
 
 
-	public void setFlight(ObservableList<Flight> flight) {
-		this.flight = flight;
+	public void setFlight(ObservableList<Flight> flights) {
+		this.flights = flights;
 	}
 
 
@@ -51,8 +51,8 @@ public class VO {
 	}
 	
 	
-	public VO(ObservableList<Flight> flight) {
-		this.flight = flight;
+	public VO(ObservableList<Flight> flights) {
+		this.flights = flights;
 	}
 
 
@@ -64,7 +64,7 @@ public class VO {
 
 	@Override
 	public String toString() {
-		return "VO [user=" + user + ", flight=" + flight + ", fl=" + fl + "]";
+		return "VO [user=" + user + ", flight=" + flights + ", fl=" + fl + "]";
 	}
 	
 	

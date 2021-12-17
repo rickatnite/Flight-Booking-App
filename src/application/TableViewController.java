@@ -93,6 +93,7 @@ public class TableViewController implements Initializable {
     private Button updateFlightButton;
     
     ObservableList<Flight> list;
+    User user = new User();
 //    		new Flight("ATL", "12/1", "12:00", "JFK", "12/2", "4:00"),
 //    		new Flight("JDK", "12/1", "12:00", "JFK", "12/2", "4:00"),
 //    		new Flight("LON", "12/1", "12:00", "JFK", "12/2", "4:00"));
@@ -155,9 +156,9 @@ public class TableViewController implements Initializable {
 		col_scheduled_arrival_time.setCellValueFactory(
 				new PropertyValueFactory<Flight,String>("arrivalTime"));
 		
-	
+		//int uid = Integer.parseInt(user.getUserid());
 		//table_scheduled_flights.setItems(list);
-		//table_scheduled_flights.setItems(DBQueries.retrieveBookings());
+		table_scheduled_flights.setItems(DBQueries.retrieveBookings(VO.getUser().getUserid()));
 		
 	
 		
@@ -168,10 +169,10 @@ public class TableViewController implements Initializable {
 	// when show my flight button is clicked the users currently booked flights are shown
 	public void displayBookedFlights(ActionEvent event) throws Exception {
 		
-		User user = new User();
-		String id = user.getUserid();
 
-		String query = "SELECT * FROM ticket WHERE userid = " + "'" + id + "'";
+		String id = VO.getUser().getUserid();
+
+		String query = "SELECT * FROM public.ticket WHERE userid = " + "'" + id + "'";
 		
 		try {
 			
@@ -197,25 +198,24 @@ public class TableViewController implements Initializable {
 	//Method to add from Available Flights TableView
 	public void addRowFromTable(ActionEvent event) throws IOException {
 		
+		//User u = new User();
+		String id = VO.getUser().getUserid();
+		System.out.println("addRowFromTable uid: " + id);
+	
+		//User u = new User(DBQueries.getUserID());
 		
-		User u = DBQueries.getUserID(u);
-		
-		
-		
-		
+		//u = u.setUserid(u);
 		
 		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
-		VO vo = new VO();
-		vo.setFl(selectedFlight.getFlightid());
+		
+		//VO vo = new VO();
+		//vo.setFl(selectedFlight.getFlightid());
 		
 		
 		System.out.println(selectedFlight.getFlightid());
 		
-		
-		
-		
-		
-		
+		//System.out.println(uid);
+
 		//String flt = selectedFlight.getFlightid();
 		//String usr = u.getUserid();
 		
@@ -231,14 +231,14 @@ public class TableViewController implements Initializable {
 		
 		
 		
-		DBQueries.insertBooking();
+		DBQueries.insertBooking(VO.getUser(), selectedFlight);
 	}
 	
 	
-	public User createUser(User user) {
-		User yooser = user;
-		return yooser;
-	}
+//	public User createUser(User user) {
+//		User yooser = user;
+//		return yooser;
+//	}
 	
 	
 	//Method to remove from Scheduled Flights TableView

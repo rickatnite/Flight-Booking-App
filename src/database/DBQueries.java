@@ -385,48 +385,72 @@ public static Flight obtainFlight(String flightid) {
 
 
 //NEED TO FIX WITH ARG - User u
-public static ObservableList<Booking> retrieveBookings(String userid) {
+public static ObservableList<Flight> retrieveBookings(String userid) {
 
-	 ObservableList<Booking> bookings = FXCollections.observableArrayList();
-
-	
+	 ObservableList<Flight> bookings = FXCollections.observableArrayList();
+	 //String userid = u.getUserid();
+		 
 	try {
 
 		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
         System.out.println("Connected to PostgreSQL database!");
         
-		PreparedStatement preparedStatement = connection.prepareStatement(Queries.GET_BOOKED_TICKETS);
+		PreparedStatement ps = connection.prepareStatement(Queries.GET_BOOKED_TICKETS);
 
-		ResultSet rs = preparedStatement.executeQuery();
+		ps.setString(1, userid);
+		
+		ResultSet rsaf = ps.executeQuery();
 
-		while (rs.next()) {
+		while (rsaf.next()) {
 			
-			Booking booked = new Booking(rs.getString("ticketid"), (rs.getString("flightid")), (rs.getString("userid")));
-				
-			bookings.add(booked);
-
+			//call obtainFLight to convert tickets to flight list for user
+			bookings.add(new Flight(rsaf.getString("ticketid"), rsaf.getString("flightid"), rsaf.getString("userid")));
+			
+			
+//			bookings.add(new Flight(rsAllFlights.getString("flightid"), rsAllFlights.getString("departureairport"), 
+//					rsAllFlights.getString("departuredate"), rsAllFlights.getString("departuretime"), rsAllFlights.getString("arrivalairport"), 
+//					rsAllFlights.getString("arrivaldate"), rsAllFlights.getString("arrivaltime")));
 		}
+			
+			
+			
+			//Booking booked = new Booking(rs.getString("ticketid"), (rs.getString("flightid")), (rs.getString("userid")));
+				
+			//bookings.add(null)
+
+		
 		connection.close();
 
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	return bookings;
 }
 
 
 
 //Method to insert new booking in the database
-public static void insertBooking(VO vo) {
+public static void insertBooking(User u, Flight f) {
 	
-	User u = vo.getUser();
+//	User u = vo.getUser();
+//	String userid = u.getUserid();
+//	
+//	Flight f = vo.getFl();
+//	String flightid = f.getFlightid();
+	
 	String userid = u.getUserid();
-	
-	Flight f = vo.getFl();
 	String flightid = f.getFlightid();
 	
-//	String usr = u.getUserid();
-//	String flt = f.getFlightid();
+	System.out.println(userid + " " + flightid);
 	
 	try {
 		
@@ -436,8 +460,8 @@ public static void insertBooking(VO vo) {
 		PreparedStatement preparedStatement = connection.prepareStatement(Queries.BOOK_TICKET);
 
 		//preparedStatement.setString(1, booking.getTicketid());
-		preparedStatement.setString(1, userid);
-		preparedStatement.setString(2, flightid);
+		preparedStatement.setString(1, flightid);
+		preparedStatement.setString(2, userid);
 	
 
 		preparedStatement.executeUpdate();

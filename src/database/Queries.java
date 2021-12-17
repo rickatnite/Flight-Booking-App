@@ -7,15 +7,15 @@ public class Queries {
 
 	public static final String INSERT_NEW_USER = "INSERT INTO public.user(username, password, firstname, lastname, address, zipcode, state, email, ssn, securityquestion, securityanswer) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	
-	public static final String GET_FLIGHT = "SELECT * FROM public.flight WHERE flightID = ?";
+	public static final String GET_FLIGHT = "SELECT * FROM public.flight WHERE CAST(flightid AS varchar) = ?";
 	//public static final String GET_FLIGHTS = "SELECT * FROM public.flight GROUP BY flight";
 	public static final String GET_FLIGHTS = "SELECT * FROM public.flight";
 	
-	public static final String BOOK_TICKET = "INSERT INTO public.ticket(userid, flightid) VALUES (?,?)";
+	public static final String BOOK_TICKET = "INSERT INTO public.ticket(flightid, userid) VALUES (?::integer, ?::integer)";
 	
-	public static final String DELETE_TICKET = "DELETE * FROM public.ticket WHERE userID = ? AND ticketID = ?";
+	public static final String DELETE_TICKET = "DELETE * FROM public.ticket WHERE userid = ? AND ticketid = ?";
 	
-	public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.ticket WHERE userID = ?";
+	public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.ticket WHERE CAST(userid AS varchar) = ?";
 	
 	public static final String GET_SECURITYQUESTION = "SELECT securityquestion FROM public.user WHERE username = ?";
 	

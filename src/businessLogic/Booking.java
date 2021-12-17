@@ -9,6 +9,7 @@ import database.DBQueries;
 
 public class Booking {
 
+	
 	private String ticketid;
 	private String userid;
 	private String flightid;
@@ -40,6 +41,13 @@ public class Booking {
 		this.flightid = flightid;
 	}
 	
+	
+
+	
+//	public Booking(int ticketid, int userid, int flightid) {
+//		this.ticketid = ticketid;
+//		this.userid = userid;
+//		this.flightid = flightid;
 	
 	
 	

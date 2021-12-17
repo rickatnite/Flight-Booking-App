@@ -6,6 +6,9 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Flight {
 
+
+	private SimpleStringProperty ticketid;
+	private SimpleStringProperty userid;
 	private SimpleStringProperty flightid;
 	private SimpleStringProperty departAirport;
 	private SimpleStringProperty departDate;
@@ -16,6 +19,14 @@ public class Flight {
 
 	public Flight() {
 	}
+	
+	
+	public Flight(String flightid, String ticketid, String userid) {
+		this.flightid = new SimpleStringProperty(flightid);
+		this.ticketid = new SimpleStringProperty(ticketid);
+		this.userid = new SimpleStringProperty(userid);
+	}
+	
 	
 	public Flight(String flightid, String departAirport, String departDate, String departTime, String arrivalAirport, String arrivalDate, String arrivalTime) {
 		
@@ -30,11 +41,18 @@ public class Flight {
 	
 	
 	
-
-
-	
+//	public String getuserid() {
+//		return flightid.get();
+//	}
+//
+//	public void setFlightid(String flightid) {
+//		this.flightid.set(flightid);
+//	}
+//
+//	
 	
 	//getter/setters
+	//this no working
 	public String getFlightid() {
 		return flightid.get();
 	}
@@ -97,6 +115,61 @@ public class Flight {
 		return "Flight [departAirport=" + departAirport + ", departDate=" + departDate
 				+ ", departTime=" + departTime + ", arrivalAirport=" + arrivalAirport + ", arrivalDate=" + arrivalDate
 				+ ", arrivalTime=" + arrivalTime + "]";
+	}
+
+
+	public SimpleStringProperty getTicketid() {
+		return ticketid;
+	}
+
+
+	public void setTicketid(SimpleStringProperty ticketid) {
+		this.ticketid = ticketid;
+	}
+
+
+	public SimpleStringProperty getUserid() {
+		return userid;
+	}
+
+
+	public void setUserid(SimpleStringProperty userid) {
+		this.userid = userid;
+	}
+
+
+	public void setFlightid(SimpleStringProperty flightid) {
+		this.flightid = flightid;
+	}
+
+
+	public void setDepartAirport(SimpleStringProperty departAirport) {
+		this.departAirport = departAirport;
+	}
+
+
+	public void setDepartDate(SimpleStringProperty departDate) {
+		this.departDate = departDate;
+	}
+
+
+	public void setDepartTime(SimpleStringProperty departTime) {
+		this.departTime = departTime;
+	}
+
+
+	public void setArrivalAirport(SimpleStringProperty arrivalAirport) {
+		this.arrivalAirport = arrivalAirport;
+	}
+
+
+	public void setArrivalDate(SimpleStringProperty arrivalDate) {
+		this.arrivalDate = arrivalDate;
+	}
+
+
+	public void setArrivalTime(SimpleStringProperty arrivalTime) {
+		this.arrivalTime = arrivalTime;
 	}
 	
 	

@@ -1,10 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import businessLogic.User;
 import database.DBQueries;
 import database.LoginDB;
+import database.Queries;
 import database.VO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,15 +110,53 @@ public class Controller {
 		String username = usernameTF.getText().toString();
 		String password = passwordTF.getText().toString();
 		
+		
+		try {
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+	    System.out.println("Database connected");
+
+	    // Create a statement
+	    PreparedStatement psGetUserID = connection.prepareStatement(Queries.GET_USERID);
+
+	    psGetUserID.setString(1, username);
+        psGetUserID.setString(2, password);
+	    
+	    // Execute a statement
+	    ResultSet rsUserID = psGetUserID.executeQuery();
+	    
+
+	    if (rsUserID.next()) {
+	    	do {
+	    	
+	    		String userid = rsUserID.getString(1);
+	    		user.setUserid(userid);
+	    		System.out.println("User ID: " + userid);
+	    		
+	    		
+	    	} while (rsUserID.next());
+	    }
+	    
+	     //Close the connection
+	    connection.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 		user.setUsername(username);
 		user.setPassword(password);
+		
+		
 		VO vo = new VO();
 		vo.setUser(user);
 	
 		
 		
 		try {
-			DBQueries.login(user);
+			DBQueries.login(VO.getUser());
 			
 			Parent root = FXMLLoader.load(getClass().getResource("Scene4.fxml"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
