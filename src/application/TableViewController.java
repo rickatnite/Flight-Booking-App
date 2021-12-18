@@ -158,6 +158,9 @@ public class TableViewController implements Initializable {
 		
 		//int uid = Integer.parseInt(user.getUserid());
 		//table_scheduled_flights.setItems(list);
+		
+		//ObservableList<Flight> bkd =
+		
 		table_scheduled_flights.setItems(DBQueries.retrieveBookings(VO.getUser().getUserid()));
 		
 	
@@ -166,7 +169,7 @@ public class TableViewController implements Initializable {
 	
 	
 	
-	// when show my flight button is clicked the users currently booked flights are shown
+	// when show add flight button is clicked the users currently booked flights are shown
 	public void displayBookedFlights(ActionEvent event) throws Exception {
 		
 
@@ -202,18 +205,18 @@ public class TableViewController implements Initializable {
 		String id = VO.getUser().getUserid();
 		System.out.println("addRowFromTable uid: " + id);
 	
+		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
+		
+		System.out.println("Adding flight " + selectedFlight.getFlightid());
+	
+		DBQueries.insertBooking(VO.getUser(), selectedFlight);
+		
 		//User u = new User(DBQueries.getUserID());
 		
 		//u = u.setUserid(u);
 		
-		Flight selectedFlight = table_avail_flights.getSelectionModel().getSelectedItem();
-		
 		//VO vo = new VO();
 		//vo.setFl(selectedFlight.getFlightid());
-		
-		
-		System.out.println(selectedFlight.getFlightid());
-		
 		//System.out.println(uid);
 
 		//String flt = selectedFlight.getFlightid();
@@ -229,9 +232,6 @@ public class TableViewController implements Initializable {
 //		
 //		System.out.println(vo.toString());
 		
-		
-		
-		DBQueries.insertBooking(VO.getUser(), selectedFlight);
 	}
 	
 	
@@ -244,7 +244,17 @@ public class TableViewController implements Initializable {
 	//Method to remove from Scheduled Flights TableView
     public void deleteRowFromTable(ActionEvent event) throws IOException {
     	
-    	table_scheduled_flights.getItems().removeAll(table_scheduled_flights.getSelectionModel().getSelectedItem());
+    	String id = VO.getUser().getUserid();
+    	System.out.println("deleteRowFromTable uid: " + id);
+    	
+    	Flight toDelete = table_scheduled_flights.getSelectionModel().getSelectedItem();
+    	System.out.println("Deleting flight " + toDelete.getFlightid());
+    	
+    	//DBQueries.deleteBooking(VO.getUser(), toDelete);
+    	DBQueries.deleteBooking(toDelete);
+    	table_scheduled_flights.getItems().remove(toDelete);
+    	
+    	//table_scheduled_flights.getItems().removeAll(table_scheduled_flights.getSelectionModel().getSelectedItem());
     	
     	
     }

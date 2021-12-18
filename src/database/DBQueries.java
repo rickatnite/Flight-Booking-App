@@ -177,11 +177,8 @@ public class DBQueries {
 				e.printStackTrace();
 			}
 			return flights;
-		}
-					
 		
-		
-		
+				
 		//return flights;
 //		Flight flight = new Flight();
 //
@@ -233,7 +230,7 @@ public class DBQueries {
 //					}
 //					
 //					//return x;
-					
+				}
 					
 					
 
@@ -388,7 +385,7 @@ public static Flight obtainFlight(String flightid) {
 public static ObservableList<Flight> retrieveBookings(String userid) {
 
 	 ObservableList<Flight> bookings = FXCollections.observableArrayList();
-	 //String userid = u.getUserid();
+	 String uid = VO.getUser().getUserid();
 		 
 	try {
 
@@ -404,12 +401,14 @@ public static ObservableList<Flight> retrieveBookings(String userid) {
 		while (rsaf.next()) {
 			
 			//call obtainFLight to convert tickets to flight list for user
-			bookings.add(new Flight(rsaf.getString("ticketid"), rsaf.getString("flightid"), rsaf.getString("userid")));
+			//bookings.add(new Flight(rsaf.getString("flightid"), rsaf.getString("ticketid"), rsaf.getString("userid")));
 			
+	
 			
-//			bookings.add(new Flight(rsAllFlights.getString("flightid"), rsAllFlights.getString("departureairport"), 
-//					rsAllFlights.getString("departuredate"), rsAllFlights.getString("departuretime"), rsAllFlights.getString("arrivalairport"), 
-//					rsAllFlights.getString("arrivaldate"), rsAllFlights.getString("arrivaltime")));
+			bookings.add(new Flight(rsaf.getString("flightid"), rsaf.getString("departureairport"), 
+					rsaf.getString("departuredate"), rsaf.getString("departuretime"), rsaf.getString("arrivalairport"), 
+					rsaf.getString("arrivaldate"), rsaf.getString("arrivaltime")));
+		
 		}
 			
 			
@@ -424,12 +423,6 @@ public static ObservableList<Flight> retrieveBookings(String userid) {
 	} catch (Exception e) {
 		e.printStackTrace();
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -482,7 +475,41 @@ public static void insertBooking(User u, Flight f) {
 
 
 
+//Method to delete booked flight in the database
+public static void deleteBooking(Flight f) {
+	
+	String userid = VO.getUser().getUserid();
+	String flightid = f.getFlightid();
+	
+	//int uid = Integer.parseInt(userid);
+	int fid = Integer.parseInt(flightid);
+	
+	System.out.println("Deleting booking for user " + userid + " and flight " + flightid);
+	
+	try {
+		
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/", "ric", null);
+		System.out.println("Connected to PostgreSQL database!");
+		
+		PreparedStatement preparedStatement = connection.prepareStatement(Queries.DELETE_TICKET);
 
+		//preparedStatement.setString(1, userid);
+		//preparedStatement.setString(2, flightid);
+		//preparedStatement.setInt(1, uid);
+		//preparedStatement.setInt(2, fid);
+		
+		preparedStatement.setInt(1, fid);
+	
+		preparedStatement.executeUpdate();
+		
+		connection.close();
+		
+		System.out.println("Booking deleted");
+		
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+}
 
 
 

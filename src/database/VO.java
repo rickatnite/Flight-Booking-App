@@ -1,5 +1,6 @@
 package database;
 
+import businessLogic.Booking;
 import businessLogic.Flight;
 import businessLogic.User;
 import javafx.collections.ObservableList;
@@ -7,8 +8,10 @@ import javafx.collections.ObservableList;
 public class VO {
 
 	static User user;
-	ObservableList<Flight> flights;
+	static ObservableList<Flight> flights;
 	static Flight fl;
+	static Booking bk;
+	static ObservableList<Booking> bookings;
 	
 	
 	public static User getUser() {
@@ -21,7 +24,7 @@ public class VO {
 	}
 
 
-	public ObservableList<Flight> getFlight() {
+	public static ObservableList<Flight> getFlight() {
 		return flights;
 	}
 
@@ -65,6 +68,36 @@ public class VO {
 	@Override
 	public String toString() {
 		return "VO [user=" + user + ", flight=" + flights + ", fl=" + fl + "]";
+	}
+
+
+	public static ObservableList<Flight> getFlights() {
+		return flights;
+	}
+
+
+	public static void setFlights(ObservableList<Flight> flights) {
+		VO.flights = flights;
+	}
+
+
+	public static Booking getBk() {
+		return bk;
+	}
+
+
+	public static void setBk(Booking bk) {
+		VO.bk = bk;
+	}
+
+
+	public static ObservableList<Booking> getBookings() {
+		return bookings;
+	}
+
+
+	public static void setBookings(ObservableList<Booking> bookings) {
+		VO.bookings = bookings;
 	}
 	
 	

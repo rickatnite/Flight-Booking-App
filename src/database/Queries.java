@@ -13,9 +13,11 @@ public class Queries {
 	
 	public static final String BOOK_TICKET = "INSERT INTO public.ticket(flightid, userid) VALUES (?::integer, ?::integer)";
 	
-	public static final String DELETE_TICKET = "DELETE * FROM public.ticket WHERE userid = ? AND ticketid = ?";
+	public static final String DELETE_TICKET = "DELETE FROM public.ticket WHERE flightid = ?";
 	
-	public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.ticket WHERE CAST(userid AS varchar) = ?";
+	public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.flight LEFT JOIN public.ticket ON (flight.flightid = ticket.flightid) WHERE userid = ?::integer";
+	//public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.flight INNER JOIN public.ticket ON userid = ?::integer";
+	//public static final String GET_BOOKED_TICKETS = "SELECT * FROM public.ticket WHERE CAST(userid AS varchar) = ?";
 	
 	public static final String GET_SECURITYQUESTION = "SELECT securityquestion FROM public.user WHERE username = ?";
 	

@@ -58,12 +58,12 @@ public class Booking {
 		this.flightid = flightid;
 	}
 	
-	public void bookFlight(String flightid) {
-		//int ticketnum = genTicketID();
-		Flight booker = DBQueries.obtainFlight(flightid);
-		Booking booking = new Booking(ticketid, userid, flightid);
-		DBQueries.insertBooking(booking);
-	}
+//	public void bookFlight(String flightid) {
+//		//int ticketnum = genTicketID();
+//		Flight booker = DBQueries.obtainFlight(flightid);
+//		Booking booking = new Booking(ticketid, userid, flightid);
+//		DBQueries.insertBooking(booking);
+//	}
 	
 //	public static int genTicketID() {
 //		Random random = new Random();
