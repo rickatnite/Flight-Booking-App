@@ -65,48 +65,48 @@
 </AnchorPane>
  -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.TableViewController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" opacity="0.86" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="506.0" fitWidth="758.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@sky.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="addFlightButton" layoutX="130.0" layoutY="320.0" mnemonicParsing="false" onAction="#addRowFromTable" text="Add Flight" />
-      <Button fx:id="returnToLoginButton" layoutX="251.0" layoutY="345.0" mnemonicParsing="false" onAction="#switchToScene1" text="Return to Login" />
-      <Button fx:id="deleteFlightButton" layoutX="403.0" layoutY="320.0" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Delete Flight" />
-      <TableView fx:id="table_avail_flights" layoutX="14.0" layoutY="83.0" prefHeight="200.0" prefWidth="266.0">
+      <Button fx:id="addFlightButton" layoutX="152.0" layoutY="345.0" mnemonicParsing="false" onAction="#addRowFromTable" text="Add Flight" />
+      <Button fx:id="returnToLoginButton" layoutX="323.0" layoutY="414.0" mnemonicParsing="false" onAction="#switchToScene1" text="Return to Login" />
+      <Button fx:id="deleteFlightButton" layoutX="517.0" layoutY="345.0" mnemonicParsing="false" onAction="#deleteRowFromTable" text="Delete Flight" />
+      <TableView fx:id="table_avail_flights" layoutX="14.0" layoutY="83.0" prefHeight="244.0" prefWidth="357.0">
         <columns>
-            <TableColumn fx:id="col_avail_ID" prefWidth="25.0" text="ID" />
-          <TableColumn fx:id="col_avail_depart" prefWidth="48.0" text="Depart" />
-          <TableColumn fx:id="col_avail_depart_date" prefWidth="36.0" text="Date" />
-            <TableColumn fx:id="col_avail_depart_time" prefWidth="37.0" text="Time" />
-            <TableColumn fx:id="col_avail_arrival" prefWidth="46.0" text="Arrival" />
-            <TableColumn fx:id="col_avail_arrival_date" prefWidth="36.0" text="Date" />
-            <TableColumn fx:id="col_avail_arrival_time" prefWidth="36.0" text="Time" />
+            <TableColumn fx:id="col_avail_ID" prefWidth="19.0" text="ID" />
+          <TableColumn fx:id="col_avail_depart" prefWidth="47.0" text="Depart" />
+          <TableColumn fx:id="col_avail_depart_date" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="col_avail_depart_time" prefWidth="51.0" text="Time" />
+            <TableColumn fx:id="col_avail_arrival" prefWidth="44.0" text="Arrival" />
+            <TableColumn fx:id="col_avail_arrival_date" prefWidth="73.0" text="Date" />
+            <TableColumn fx:id="col_avail_arrival_time" prefWidth="47.0" text="Time" />
         </columns>
       </TableView>
-      <TableView fx:id="table_scheduled_flights" layoutX="300.0" layoutY="83.0" prefHeight="200.0" prefWidth="281.0">
+      <TableView fx:id="table_scheduled_flights" layoutX="386.0" layoutY="83.0" prefHeight="244.0" prefWidth="357.0">
         <columns>
-            <TableColumn fx:id="col_scheduled_ID" prefWidth="23.0" text="ID" />
-          <TableColumn fx:id="col_scheduled_depart" prefWidth="52.0" text="Depart" />
-          <TableColumn fx:id="col_scheduled_depart_date" prefWidth="39.0" text="Date" />
-            <TableColumn fx:id="col_scheduled_depart_time" prefWidth="40.0" text="Time" />
+            <TableColumn fx:id="col_scheduled_ID" prefWidth="18.0" text="ID" />
+          <TableColumn fx:id="col_scheduled_depart" prefWidth="46.0" text="Depart" />
+          <TableColumn fx:id="col_scheduled_depart_date" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="col_scheduled_depart_time" prefWidth="52.0" text="Time" />
             <TableColumn fx:id="col_scheduled_arrival" prefWidth="44.0" text="Arrival" />
-            <TableColumn fx:id="col_scheduled_arrival_date" prefWidth="40.0" text="Date" />
-            <TableColumn fx:id="col_scheduled_arrival_time" prefWidth="41.0" text="Time" />
+            <TableColumn fx:id="col_scheduled_arrival_date" prefWidth="74.0" text="Date" />
+            <TableColumn fx:id="col_scheduled_arrival_time" prefWidth="46.0" text="Time" />
         </columns>
       </TableView>
-      <Label layoutX="79.0" layoutY="27.0" text="Available Flights">
+      <Label layoutX="100.0" layoutY="34.0" text="Available Flights">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="329.0" layoutY="27.0" text="Scheduled Flights">
+      <Label layoutX="463.0" layoutY="34.0" text="Scheduled Flights">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="251.0" layoutY="307.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Update" />
+      <Button fx:id="updateFlightButton" layoutX="330.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchToScene4" prefHeight="25.0" prefWidth="98.0" text="Update" />
    </children>
 </AnchorPane>

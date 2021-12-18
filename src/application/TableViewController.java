@@ -209,7 +209,12 @@ public class TableViewController implements Initializable {
 		
 		System.out.println("Adding flight " + selectedFlight.getFlightid());
 	
+		//create if block that checks flightid for existing vbooked flight
+		//if flight != existing booking, continue
+		
+		
 		DBQueries.insertBooking(VO.getUser(), selectedFlight);
+			
 		
 		//User u = new User(DBQueries.getUserID());
 		
@@ -252,16 +257,31 @@ public class TableViewController implements Initializable {
     	
     	//DBQueries.deleteBooking(VO.getUser(), toDelete);
     	DBQueries.deleteBooking(toDelete);
-    	table_scheduled_flights.getItems().remove(toDelete);
+    	//table_scheduled_flights.getItems().remove(toDelete);
     	
     	//table_scheduled_flights.getItems().removeAll(table_scheduled_flights.getSelectionModel().getSelectedItem());
     	
     	
     }
+    
+    
+    
+	public void switchToScene4(ActionEvent event) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("Scene4.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		System.out.println("Page refreshed");
+	}
+    
+    
+    
+    
 }
 
 
-
+	
 
 
 

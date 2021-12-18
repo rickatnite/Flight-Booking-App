@@ -21,9 +21,9 @@
       <Button fx:id="recoverPasswordButton" layoutX="448.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene3" text="Forgot Password?" />
       <Button fx:id="registerButton" layoutX="354.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene2" prefHeight="25.0" prefWidth="84.0" text="Register" />
       <Button fx:id="loginButton" layoutX="282.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchToScene4" prefHeight="25.0" prefWidth="59.0" text="Login" />
-      <Label layoutX="103.0" layoutY="140.0" text="Welcome!">
+      <Label layoutX="141.0" layoutY="140.0" text="Welcome!">
          <font>
-            <Font name="Bungee Inline" size="72.0" />
+            <Font name="Georgia Italic" size="72.0" />
          </font>
          <effect>
             <Glow />
